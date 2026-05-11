@@ -1,5 +1,5 @@
 #pragma once
 #ifndef PCH_H
 #define PCH_H
-#include "../lab06/textgen.h"
+#include "../mod-lab06-markov/textgen.h"
 #endif 
