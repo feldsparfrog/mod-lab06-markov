@@ -1,8 +1,8 @@
 // Copyright 2021 GHA Test Team
 #include <gtest/gtest.h>
 #include "pch.h"
-#include "textgen.h"
-#include "textgen.cpp"
+#include "../include/textgen.h"
+#include "../src/textgen.cpp"
 TEST(Tests, TestPrefixSize) 
 {
 	setlocale(LC_ALL, "Russian");
