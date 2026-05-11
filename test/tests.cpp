@@ -3,7 +3,6 @@
 #include "pch.h"
 #include "../mod-lab06-markov/textgen.h"
 #include "../mod-lab06-markov/textgen.cpp"
-
 TEST(Tests, TestPrefixSize) 
 {
 	setlocale(LC_ALL, "Russian");
@@ -43,7 +42,6 @@ TEST(Tests, TestTable)
 }
 TEST(Tests, TestRandomNumber)
 {
-	setlocale(LC_ALL, "Russian");
 	int testgen = RandomNumber(20);
 	EXPECT_TRUE(testgen >= 0 && testgen <= 20);
 }
