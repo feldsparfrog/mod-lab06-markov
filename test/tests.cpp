@@ -1,8 +1,8 @@
 // Copyright 2021 GHA Test Team
 #include <gtest/gtest.h>
 #include "pch.h"
-#include "../lab06/textgen.h"
-#include "../lab06/textgen.cpp"
+#include "../mod-lab06-markov/textgen.h"
+#include "../mod-lab06-markov/textgen.cpp"
 
 TEST(Tests, TestPrefixSize) 
 {
