@@ -1,7 +1,7 @@
+// Copyright 2021 GHA Test Team
 #pragma once
 #ifndef INCLUDE_TEXTGEN_H_
 #define INCLUDE_TEXTGEN_H_
-using namespace std;
 #include <locale>
 #include <iostream>
 #include <fstream>
@@ -10,15 +10,18 @@ using namespace std;
 #include <string>
 #include <vector>
 #include<random>
-typedef deque<string> prefix; //очередь префиксов
-const int NPREF = 2; //количество слов в префиксе
-const int MAXGEN = 1200; //объем текста на выходе
-vector<string> ReadFromFile(string filename);
-prefix CreatePrefix(vector<string> allwords, int npref, int i);
-vector<string> CreateSuffix(vector<string> allwords, int npref, prefix newprefix);
-map<prefix, vector<string>> CreateTable(vector<string> allwords, int npref);
+typedef std::deque<std::string> prefix;
+const int NPREF = 2;
+const int MAXGEN = 1200;
+std::vector<std::string> ReadFromFile(std::string filename);
+prefix CreatePrefix(std::vector<std::string> allwords, int npref, int i);
+std::vector<std::string> CreateSuffix(
+    std::vector<std::string> allwords,int npref, prefix newprefix);
+std::map<prefix, std::vector<std::string>> CreateTable(
+    std::vector<std::string> allwords, int npref);
 int RandomNumber(int maxnumber);
-prefix GeneratePrefix(map<prefix, vector<string>> statetab);
-string ChooseSuffix(map<prefix, vector<string>> statetab, prefix nextprefix);
-void Generate(map<prefix, vector<string>> statetab, int maxgen);
+prefix GeneratePrefix(std::map<prefix, std::vector<std::string>> statetab);
+std::string ChooseSuffix(
+    std::map<prefix, std::vector<std::string>> statetab, prefix nextprefix);
+void Generate(std::map<prefix, std::vector<std::string>> statetab, int maxgen);
 #endif
