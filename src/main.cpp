@@ -1,7 +1,10 @@
+// Copyright 2021 GHA Test Team
 #include "textgen.h"
-int main()
-{
-	vector<string> allwords = ReadFromFile("training.txt");
-	map<prefix, vector<string>> statetab = CreateTable(allwords, NPREF);
-	Generate(statetab, MAXGEN);
+#include <string>
+#include <vector>
+int main() {
+    std::vector<std::string> allwords = ReadFromFile("training.txt");
+    std::map<prefix, std::vector<std::string>> statetab = 
+        CreateTable(allwords, NPREF);
+    Generate(statetab, MAXGEN);
 }
