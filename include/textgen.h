@@ -16,7 +16,7 @@ const int MAXGEN = 1200;
 std::vector<std::string> ReadFromFile(std::string filename);
 prefix CreatePrefix(std::vector<std::string> allwords, int npref, int i);
 std::vector<std::string> CreateSuffix(
-    std::vector<std::string> allwords,int npref, prefix newprefix);
+    std::vector<std::string> allwords, int npref, prefix newprefix);
 std::map<prefix, std::vector<std::string>> CreateTable(
     std::vector<std::string> allwords, int npref);
 int RandomNumber(int maxnumber);
