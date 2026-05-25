@@ -83,7 +83,7 @@ TEST(Tests, TestSuffixChoose2) {
 }
 TEST(Tests, TestGenerate) {
     setlocale(LC_ALL, "Russian");
-    vector<string> testsentence =
+    std::vector<std::string> testsentence =
     { "Ты", "мне", "ворон,", "ты", "мне", "воздух,", "величиною", "с", "кулак",
         "смотрят", "звёзды" };
     std::map<prefix, std::vector<std::string>> testtab =
