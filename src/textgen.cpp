@@ -1,8 +1,9 @@
 // Copyright 2021 GHA Test Team
-#include "textgen.h"
 #include <iostream>
+#include <map>
 #include <string>
 #include <vector>
+#include "textgen.h"
 std::vector<std::string> ReadFromFile(std::string filename) {
     std::vector<std::string> allwords;
     setlocale(LC_ALL, "Russian");
@@ -13,18 +14,16 @@ std::vector<std::string> ReadFromFile(std::string filename) {
     while (file.get(ch)) {
         if (ch == '\r')
             continue;
-		if (ch == '\n') {
-			word += ch;
-			allwords.push_back(word);
-			word.clear();
-        }
-        else if (isspace(static_cast<unsigned char>(ch))) {
+        if (ch == '\n') {
+            word += ch;
+            allwords.push_back(word);
+            word.clear();
+        } else if (isspace(static_cast<unsigned char>(ch))) {
             if (!word.empty()) {
                 allwords.push_back(word);
                 word.clear();
             }
-        }
-        else {
+        } else {
             word += ch;
         }
     }
@@ -62,7 +61,7 @@ std::map<prefix, std::vector<std::string>> CreateTable(
             allwords, npref, newprefix);
         statetab[newprefix] = newsuffix;
     }
-	return statetab;
+    return statetab;
 }
 int RandomNumber(int maxnumber) {
     std::random_device rd;
