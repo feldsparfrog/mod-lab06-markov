@@ -1,23 +1,24 @@
 // Copyright 2021 GHA Test Team
 #include <gtest/gtest.h>
+#include "textgen.h"
 #include <string>
 #include <vector>
 TEST(Tests, TestPrefixSize) {
     setlocale(LC_ALL, "Russian");
-    vector<string> testsentence =
+    std::vector<std::string> testsentence =
     { "Съешь", "же", "этих", "французских", "булок", "да", "выпей", "чаю" };
     EXPECT_EQ(CreatePrefix(testsentence, 3, 0).size(), 3);
 }
 TEST(Tests, TestPrefix) {
     setlocale(LC_ALL, "Russian");
-    vector<string> testsentence =
+    std::vector<std::string> testsentence =
     { "Съешь", "же", "этих", "французских", "булок", "да", "выпей", "чаю" };
     prefix testprefix = { "этих", "французских", "булок" };
     EXPECT_EQ(CreatePrefix(testsentence, 3, 2), testprefix);
 }
 TEST(Tests, TestSuffixSize) {
     setlocale(LC_ALL, "Russian");
-    vector<string> testsentence =
+    std::vector<std::string> testsentence =
     { "Ты", "мне", "ворон,", "ты", "мне", "воздух,", "величиною", "с", "кулак",
         "смотрят", "звёзды" };
     prefix testprefix = CreatePrefix(testsentence, 2, 0);
@@ -25,21 +26,22 @@ TEST(Tests, TestSuffixSize) {
 }
 TEST(Tests, TestSuffix) {
     setlocale(LC_ALL, "Russian");
-    vector<string> testsentence =
+    std::vector<std::string> testsentence =
     { "Ты", "мне", "ворон,", "ты", "мне", "воздух,", "величиною", "с", "кулак",
         "смотрят", "звёзды" };
     prefix testprefix = CreatePrefix(testsentence, 2, 0);
-    vector<string> testsuffix = { "ворон,", "воздух," };
+    std::vector<std::string> testsuffix = { "ворон,", "воздух," };
     EXPECT_EQ(CreateSuffix(testsentence, 2, testprefix), testsuffix);
 }
 TEST(Tests, TestTable) {
     setlocale(LC_ALL, "Russian");
-    vector<string> testsentence =
+    std::vector<std::string> testsentence =
     { "Ты", "мне", "ворон,", "ты", "мне", "воздух,", "величиною", "с", "кулак",
         "смотрят", "звёзды" };
-    map<prefix, vector<string>> testtab = CreateTable(testsentence, 2);
+    std::map<prefix, std::vector<std::string>> testtab =
+        CreateTable(testsentence, 2);
     prefix testprefix = CreatePrefix(testsentence, 2, 0);
-    vector<string> testsuffix = { "ворон,", "воздух," };
+    std::vector<std::string> testsuffix = { "ворон,", "воздух," };
     EXPECT_EQ(testtab[testprefix], testsuffix);
 }
 TEST(Tests, TestRandomNumber) {
@@ -48,39 +50,44 @@ TEST(Tests, TestRandomNumber) {
 }
 TEST(Tests, TestPrefixGenerate) {
     setlocale(LC_ALL, "Russian");
-    vector<string> testsentence =
+    std::vector<std::string> testsentence =
     { "Съешь", "же", "этих", "французских", "булок", "да", "выпей", "чаю" };
-    map<prefix, vector<string>> testtab = CreateTable(testsentence, 5);
-    EXPECT_TRUE(GeneratePrefix(testtab).back() == "булок" || 
+    std::map<prefix, std::vector<std::string>> testtab =
+        CreateTable(testsentence, 5);
+    EXPECT_TRUE(GeneratePrefix(testtab).back() == "булок" ||
         GeneratePrefix(testtab).back() == "да" ||
-        GeneratePrefix(testtab).back() == "выпей" || 
+        GeneratePrefix(testtab).back() == "выпей" ||
         GeneratePrefix(testtab).back() == "чаю");
 }
 TEST(Tests, TestSuffixChoose1) {
     setlocale(LC_ALL, "Russian");
-    vector<string> testsentence =
+    std::vector<std::string> testsentence =
     { "Ты", "мне", "ворон,", "ты", "мне", "воздух,", "величиною", "с", "кулак",
         "смотрят", "звёзды" };
     prefix testprefix = CreatePrefix(testsentence, 2, 1);
-    map<prefix, vector<string>> testtab = CreateTable(testsentence, 2);
+    std::map<prefix, std::vector<std::string>> testtab =
+        CreateTable(testsentence, 2);
     EXPECT_EQ(ChooseSuffix(testtab, testprefix), "ты");
 }
 TEST(Tests, TestSuffixChoose2) {
     setlocale(LC_ALL, "Russian");
-    vector<string> testsentence =
+    std::vector<std::string> testsentence =
     { "Ты", "мне", "ворон,", "ты", "мне", "воздух,", "величиною", "с", "кулак",
         "смотрят", "звёзды" };
     prefix testprefix = CreatePrefix(testsentence, 2, 0);
-    map<prefix, vector<string>> testtab = CreateTable(testsentence, 2);
-    EXPECT_TRUE(ChooseSuffix(testtab, testprefix) == "ворон," || ChooseSuffix(testtab, testprefix) == "воздух,");
+    std::map<prefix, std::vector<std::string>> testtab =
+        CreateTable(testsentence, 2);
+    EXPECT_TRUE(ChooseSuffix(testtab, testprefix) == "ворон," ||
+        ChooseSuffix(testtab, testprefix) == "воздух,");
 }
 TEST(Tests, TestGenerate) {
     setlocale(LC_ALL, "Russian");
     vector<string> testsentence =
     { "Ты", "мне", "ворон,", "ты", "мне", "воздух,", "величиною", "с", "кулак",
         "смотрят", "звёзды" };
-    map<prefix, vector<string>> testtab = CreateTable(testsentence, 2);
+    std::map<prefix, std::vector<std::string>> testtab =
+        CreateTable(testsentence, 2);
     Generate(testtab, 20);
-    vector<string> newtext = ReadFromFile("gen.txt");
+    std::vector<std::string> newtext = ReadFromFile("gen.txt");
     EXPECT_EQ(newtext.size(), 20);
 }
