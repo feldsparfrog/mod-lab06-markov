@@ -39,9 +39,9 @@ TEST(Tests, TestTable) {
     std::vector<std::string> testsentence =
     { "ты", "мне", "ворон,", "ты", "мне", "воздух,", "величиною", "с", "кулак",
         "смотрят", "звёзды" };
+    prefix testprefix = CreatePrefix(testsentence, 2, 0);
     std::map<prefix, std::vector<std::string>> testtab =
         CreateTable(testsentence, 2);
-    prefix testprefix = CreatePrefix(testsentence, 2, 0);
     std::vector<std::string> testsuffix = { "ворон,", "воздух," };
     EXPECT_EQ(testtab[testprefix], testsuffix);
 }
