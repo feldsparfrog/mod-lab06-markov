@@ -1,8 +1,9 @@
 // Copyright 2021 GHA Test Team
 #include <gtest/gtest.h>
-#include "textgen.h"
+#include <map>
 #include <string>
 #include <vector>
+#include "textgen.h"
 TEST(Tests, TestPrefixSize) {
     setlocale(LC_ALL, "Russian");
     std::vector<std::string> testsentence =
